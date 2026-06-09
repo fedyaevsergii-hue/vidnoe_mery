@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidnoe Meri — салон красоты</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #f7f1eb;
+      color: #1f1a17;
+      line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    header { padding: 24px 0; position: absolute; top: 0; width: 100%; z-index: 10; }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+    .nav a { font-size: 14px; margin-left: 26px; opacity: 0.8; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(247,241,235,.82), rgba(247,241,235,.88)),
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1400&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-content { max-width: 620px; padding-top: 80px; }
+    .label {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #9b7a5a;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 19px;
+      max-width: 520px;
+      color: #5a5048;
+      margin-bottom: 34px;
+    }
+    .buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: .25s;
+    }
+    .btn-dark { background: #1f1a17; color: #fff; }
+    .btn-light { border: 1px solid #c8b6a4; color: #1f1a17; background: rgba(255,255,255,.35); }
+    .btn:hover { transform: translateY(-2px); }
+
+    section { padding: 100px 0; }
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      max-width: 560px;
+      color: #6b5f55;
+      font-size: 17px;
+      margin-bottom: 46px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .card {
+      background: #fffaf6;
+      border: 1px solid #eadfd6;
+      border-radius: 28px;
+      padding: 30px;
+      min-height: 220px;
+      transition: .25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(75, 50, 30, .08);
+    }
+    .card h3 { font-size: 22px; margin-bottom: 12px; }
+    .card p { color: #6b5f55; font-size: 15px; }
+    .price { margin-top: 24px; font-size: 20px; font-weight: 700; color: #9b7a5a; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 54px;
+      align-items: center;
+    }
+    .about-img {
+      height: 560px;
+      border-radius: 36px;
+      background: url("https://images.unsplash.com/photo-1522338242992-e1a54906a8da?q=80&w=1000&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+    }
+    .about-text p { color: #6b5f55; font-size: 17px; margin-bottom: 18px; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap: 18px;
+    }
+    .photo {
+      border-radius: 28px;
+      min-height: 320px;
+      background-size: cover;
+      background-position: center;
+    }
+    .photo:nth-child(1) { background-image: url("https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1000&auto=format&fit=crop"); }
+    .photo:nth-child(2) { background-image: url("https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1000&auto=format&fit=crop"); }
+    .photo:nth-child(3) { background-image: url("https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1000&auto=format&fit=crop"); }
+
+    .cta {
+      background: #1f1a17;
+      color: #fff;
+      border-radius: 42px;
+      padding: 70px;
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .cta p {
+      color: #d6c9bd;
+      max-width: 580px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+    }
+    .cta .btn { background: #fff; color: #1f1a17; display: inline-block; }
+
+    footer { padding: 40px 0; color: #7a6d62; font-size: 14px; }
+    .footer { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    @media (max-width: 850px) {
+      .nav a { display: none; }
+      .grid, .about, .gallery { grid-template-columns: 1fr; }
+      .about-img { height: 420px; }
+      section { padding: 70px 0; }
+      .cta { padding: 46px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">VIDNOE MERI</div>
+    <nav>
+      <a href="#services">Услуги</a>
+      <a href="#about">О салоне</a>
+      <a href="#gallery">Работы</a>
+      <a href="#contact">Запись</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="label">Premium beauty salon</span>
+      <h1>Красота начинается с заботы о себе</h1>
+      <p>Маникюр, волосы, брови и уходовые процедуры в атмосфере спокойствия, эстетики и премиального сервиса.</p>
+      <div class="buttons">
+        <a class="btn btn-dark" href="#contact">Записаться онлайн</a>
+        <a class="btn btn-light" href="#services">Посмотреть услуги</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Услуги</h2>
+    <p class="section-subtitle">Мы создаём не просто результат, а ощущение уверенности, ухоженности и комфорта после каждого визита.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Маникюр</h3>
+        <p>Аккуратная форма, бережная обработка и стойкое покрытие.</p>
+        <div class="price">от 1 500 ₽</div>
+      </div>
+
+      <div class="card">
+        <h3>Волосы</h3>
+        <p>Уход, восстановление, консультация и подбор процедур под ваши волосы.</p>
+        <div class="price">от 2 500 ₽</div>
+      </div>
+
+      <div class="card">
+        <h3>Брови</h3>
+        <p>Коррекция, окрашивание и естественная форма под черты лица.</p>
+        <div class="price">от 1 000 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <div class="about-img"></div>
+    <div class="about-text">
+      <span class="label">О салоне</span>
+      <h2 class="section-title">Место, куда хочется возвращаться</h2>
+      <p>Vidnoe Meri — это салон красоты в Видном, где важны детали: стерильность, атмосфера, качество материалов и внимательное отношение к каждому клиенту.</p>
+      <p>Мы подбираем процедуры индивидуально и создаём результат, который хочется показывать каждый день.</p>
+      <a class="btn btn-dark" href="#contact">Записаться</a>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title">Атмосфера и результат</h2>
+    <p class="section-subtitle">Минимализм, тёплый свет и эстетика премиального салона.</p>
+
+    <div class="gallery">
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="cta">
+      <h2>Запишитесь на удобное время</h2>
+      <p>Выберите услугу, мастера и время онлайн. Мы позаботимся о вашем комфорте с первого сообщения.</p>
+      <a class="btn" href="https://dikidi.net/2084948" target="_blank">Записаться онлайн</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer">
+    <div>© 2026 Vidnoe Meri</div>
+    <div>Instagram · Telegram · DIKIDI</div>
+  </div>
+</footer>
+
+</body>
+</html>
